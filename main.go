@@ -17,8 +17,8 @@ func buttonClickHandler(w http.ResponseWriter, r *http.Request) {
 
 func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 	//render the settings page using the template settings in the file hompage.templ
-	response := settings().Render
-	fmt.Fprint(w, response)
+	//response := settings()
+	//fmt.Fprint(w, response.Render())
 	log.Println("settings was clicked")
 }
 
