@@ -1,0 +1,25 @@
+package main
+import (
+    "strconv"
+)
+//@counts(global, session)
+
+templ homepage(name string, age int, isAdult bool) {
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Go + Templ + HTMX Example</title>
+		<script src="https://unpkg.com/htmx.org@1.8.4"></script>
+	</head>
+	<body>
+		<h1>Go + Templ + HTMX Example</h1>
+		<button hx-get="/button-click" hx-target="#result">Click Me</button>
+		<button hx-get="/Settings" hx-target="#result">Settings</button>
+		<div id="result">Hello!</div>
+        <div>Hello, { name }</div>
+    <div>Age: { strconv.Itoa(age) }</div>
+    <div>Is Adult: { strconv.FormatBool(isAdult) }</div>
+	</body>
+	</html>
+}
