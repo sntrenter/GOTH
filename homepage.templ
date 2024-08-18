@@ -1,25 +1,44 @@
 package main
-import (
-    "strconv"
-)
-//@counts(global, session)
 
-templ homepage(name string, age int, isAdult bool) {
-<!DOCTYPE html>
+//@counts(global, session)
+templ homepage() {
+	<!DOCTYPE html>
 	<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Go + Templ + HTMX Example</title>
-		<script src="https://unpkg.com/htmx.org@1.8.4"></script>
-	</head>
-	<body>
-		<h1>Go + Templ + HTMX Example</h1>
-		<button hx-get="/button-click" hx-target="#result">Click Me</button>
-		<button hx-get="/Settings" hx-target="#result">Settings</button>
-		<div id="result">Hello!</div>
-        <div>Hello, { name }</div>
-    <div>Age: { strconv.Itoa(age) }</div>
-    <div>Is Adult: { strconv.FormatBool(isAdult) }</div>
-	</body>
+		<head>
+			<meta charset="UTF-8"/>
+			<title>Go + Templ + HTMX Example</title>
+			<script src="https://unpkg.com/htmx.org@1.8.4"></script>
+		</head>
+		<body>
+			<h1>Go + Templ + HTMX Example</h1>
+			<button hx-get="/button-click" hx-target="#result">Click Me</button>
+			<a href="/Settings"><button>Settings</button></a>
+			<div id="result">Hello!</div>
+			<div>
+				<form hx-post="/addRow" hx-target="#addRowConfirm" hx-swap="innerHTML">
+					<label for="url">Enter URL:</label>
+					<input type="text" id="url" name="url" required/>
+					<button type="submit">Add Row</button>
+				</form>
+					<div id="addRowConfirm">
+
+					</div>
+
+			</div>
+			<div>
+				<button hx-get="/tableHandler" hx-trigger="click" hx-target="#table-body">Load Data</button>
+				<table border="1">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>URL</th>
+						</tr>
+					</thead>
+					<tbody id="table-body">
+						<!-- Dynamic content will be loaded here -->
+					</tbody>
+				</table>
+			</div>
+		</body>
 	</html>
 }

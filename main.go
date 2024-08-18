@@ -15,26 +15,39 @@ func buttonClickHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("button was clicked")
 }
 
+func tableHandler(w http.ResponseWriter, r *http.Request) {
+	//response := table()
+	//fmt.Fprint(w, response.Render())
+	//log.Println("table was clicked")
+	test := getRowsAsHTML(0)
+	log.Println("table was clicked")
+	fmt.Fprint(w, test)
+	//fmt.Fprint(w, "<p>fake table data</p>")
+}
+
 func SettingsHandler(w http.ResponseWriter, r *http.Request) {
 	//render the settings page using the template settings in the file hompage.templ
 	//response := settings()
 	//fmt.Fprint(w, response.Render())
+	fmt.Fprint(w, templ.Handler(settings()))
 	log.Println("settings was clicked")
 }
 
+func addRowHandler(w http.ResponseWriter, r *http.Request) {
+
+	fmt.Fprint(w, addRow(r.FormValue("url")))
+}
+
 func main() {
-	//component := hello("John")
-	name := "John"
-	age := 21
-	isAdult := age >= 18
 
-	component := homepage(name, age, isAdult)
-
+	component := homepage()
 	//settings := settings()
 
 	http.Handle("/", templ.Handler(component))
+	http.Handle("/Settings", templ.Handler(settings()))
 	http.HandleFunc("/button-click", buttonClickHandler)
-	http.HandleFunc("/Settings", SettingsHandler)
+	http.HandleFunc("/tableHandler", tableHandler)
+	http.HandleFunc("/addRow", addRowHandler)
 
 	fmt.Println("Listening on :3000")
 	http.ListenAndServe("127.0.0.1:3000", nil)

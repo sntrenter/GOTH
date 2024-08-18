@@ -4,7 +4,18 @@ import (
 )
 
 templ settings() {
-	<p>Test Settings</p>
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Go + Templ + HTMX Example</title>
+		<script src="https://unpkg.com/htmx.org@1.8.4"></script>
+	</head>
+	<body>
+		<p>Settings!</p>
+		<a href="/"><button >HOME</button></a>
+	</body>
+	</html>
 }
 
 //@counts(global, session)

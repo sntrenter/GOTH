@@ -8,12 +8,8 @@ package main
 import "github.com/a-h/templ"
 import templruntime "github.com/a-h/templ/runtime"
 
-import (
-	"strconv"
-)
-
 // @counts(global, session)
-func homepage(name string, age int, isAdult bool) templ.Component {
+func homepage() templ.Component {
 	return templruntime.GeneratedTemplate(func(templ_7745c5c3_Input templruntime.GeneratedComponentInput) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_W, ctx := templ_7745c5c3_Input.Writer, templ_7745c5c3_Input.Context
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templruntime.GetBuffer(templ_7745c5c3_W)
@@ -31,46 +27,7 @@ func homepage(name string, age int, isAdult bool) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Go + Templ + HTMX Example</title><script src=\"https://unpkg.com/htmx.org@1.8.4\"></script></head><body><h1>Go + Templ + HTMX Example</h1><button hx-get=\"/button-click\" hx-target=\"#result\">Click Me</button> <button hx-get=\"/Settings\" hx-target=\"#result\">Settings</button><div id=\"result\">Hello!</div><div>Hello, ")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var2 string
-		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(name)
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `homepage.templ`, Line: 20, Col: 26}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div>Age: ")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var3 string
-		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(age))
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `homepage.templ`, Line: 21, Col: 33}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div>Is Adult: ")
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		var templ_7745c5c3_Var4 string
-		templ_7745c5c3_Var4, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.FormatBool(isAdult))
-		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `homepage.templ`, Line: 22, Col: 48}
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var4))
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
-		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></body></html>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><title>Go + Templ + HTMX Example</title><script src=\"https://unpkg.com/htmx.org@1.8.4\"></script></head><body><h1>Go + Templ + HTMX Example</h1><button hx-get=\"/button-click\" hx-target=\"#result\">Click Me</button> <a href=\"/Settings\"><button>Settings</button></a><div id=\"result\">Hello!</div><div><form hx-post=\"/addRow\" hx-target=\"#addRowConfirm\" hx-swap=\"innerHTML\"><label for=\"url\">Enter URL:</label> <input type=\"text\" id=\"url\" name=\"url\" required> <button type=\"submit\">Add Row</button></form><div id=\"addRowConfirm\"></div></div><div><button hx-get=\"/tableHandler\" hx-trigger=\"click\" hx-target=\"#table-body\">Load Data</button><table border=\"1\"><thead><tr><th>ID</th><th>URL</th></tr></thead> <tbody id=\"table-body\"><!-- Dynamic content will be loaded here --></tbody></table></div></body></html>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
